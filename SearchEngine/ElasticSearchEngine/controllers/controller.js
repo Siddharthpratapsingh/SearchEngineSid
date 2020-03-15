@@ -43,7 +43,11 @@ exports.create = function (req, res) {
     
 };
 exports.newsDetails = function (req, res) {
-    news.search( {query:{title:'corona'}}, function(err,results) {
+    news.search( {
+        query_string: {
+          query: req.params.data
+        }
+      } , function(err,results) {
         res.send(results)  
     })
     
